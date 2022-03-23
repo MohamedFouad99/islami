@@ -13,6 +13,7 @@ class ItemVerse extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 12),
+      margin: EdgeInsets.all(12),
       child: Text(
         text,
         textAlign: TextAlign.center,

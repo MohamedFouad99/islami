@@ -50,7 +50,7 @@ class _SebhaTabState extends State<SebhaTab> {
               'عدد التسبيحات',
               style: TextStyle(
                 fontSize: 25,
-                fontWeight: FontWeight.w500,
+                fontWeight: FontWeight.bold,
                 color: Colors.black,
               ),
             ),
