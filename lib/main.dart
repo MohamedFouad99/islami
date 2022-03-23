@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:islami/home_screen.dart';
+import 'package:islami/home/home_screen.dart';
 import 'package:islami/my_theme.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
