@@ -1,21 +1,32 @@
-// ignore_for_file: prefer_const_constructors_in_immutables, use_key_in_widget_constructors, prefer_const_constructors, prefer_is_empty, must_be_immutable
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, must_be_immutable, prefer_is_empty
 
 import 'package:flutter/material.dart';
-import 'package:islami/home/ahadeth/hadeth_tab.dart';
-import 'package:islami/home/quran/sura_details/item_verse.dart';
+import 'package:flutter/services.dart';
+
 import 'package:islami/provider/theme_provider.dart';
 
 import 'package:provider/provider.dart';
 
-class HadethDetails extends StatelessWidget {
-  Hadeth hadeth;
-  HadethDetails(this.hadeth);
+import 'item_verse.dart';
+
+class SuraDetailsScreen extends StatefulWidget {
+  String name;
+  int index;
+  SuraDetailsScreen({required this.index, required this.name});
+
+  @override
+  State<SuraDetailsScreen> createState() => _SuraDetailsScreenState();
+}
+
+class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
   List<String> verses = [];
 
   @override
   Widget build(BuildContext context) {
     var themeProvider = Provider.of<ThemeProvider>(context);
-    verses = hadeth.content;
+    if (verses.isEmpty) {
+      loadFile(widget.index);
+    }
     return Stack(children: [
       Image.asset(
         themeProvider.getBackgroundImage(),
@@ -26,10 +37,9 @@ class HadethDetails extends StatelessWidget {
       Scaffold(
         appBar: AppBar(
           title: Text(
-            hadeth.title,
+            widget.name,
             style: Theme.of(context).textTheme.headline1,
           ),
-          centerTitle: true,
         ),
         body: verses.length == 0
             ? Center(child: CircularProgressIndicator())
@@ -48,5 +58,13 @@ class HadethDetails extends StatelessWidget {
               ),
       ),
     ]);
+  }
+
+  void loadFile(int index) async {
+    String content =
+        await rootBundle.loadString('assets/files/${index + 1}.txt');
+    List<String> lines = content.split("/n");
+    verses = lines;
+    setState(() {});
   }
 }

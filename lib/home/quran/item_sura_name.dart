@@ -1,21 +1,24 @@
 // ignore_for_file: use_key_in_widget_constructors, avoid_unnecessary_containers, prefer_const_constructors, must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:islami/sura_details/sura_details.dart';
+import 'package:islami/home/quran/sura_details/sura_details.dart';
 
 class ItemSuraName extends StatelessWidget {
   String name;
   int index;
-  ItemSuraName(
-    this.name,this.index
-  );
+  ItemSuraName(this.name, this.index);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => SuraDetailsScreen(name: name,index: index,)));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => SuraDetailsScreen(
+                      name: name,
+                      index: index,
+                    )));
       },
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 12),
